@@ -1,4 +1,4 @@
-import { onMount } from 'solid-js'
+import { createSignal, onMount } from 'solid-js'
 import './style.css'
 import { createSwapy } from 'swapy'
 
@@ -22,10 +22,13 @@ function A() {
 }
 
 function C() {
+
+  const [count, setCount] = createSignal(0);
+  
   return (
     <>
-      <div class="item c" data-swapy-item="c">
-        <div>C</div>
+      <div class="item c" data-swapy-item="c" onClick={() => setCount(count() + 1)}>
+        <div>C-{count()}</div>
       </div>
     </>
   )
@@ -62,6 +65,7 @@ function Page() {
       localStorage.setItem('slotItem', JSON.stringify(data.object))
     })
   })
+
   return (
     <>
       <div class="container">
